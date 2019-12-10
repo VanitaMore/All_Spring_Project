@@ -1,0 +1,1150 @@
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: hydro
+-- ------------------------------------------------------
+-- Server version	8.0.16
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `alarm_master`
+--
+
+DROP TABLE IF EXISTS `alarm_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `alarm_master` (
+  `alarm_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `alarm_type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alarm_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`alarm_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `alarm_master`
+--
+
+LOCK TABLES `alarm_master` WRITE;
+/*!40000 ALTER TABLE `alarm_master` DISABLE KEYS */;
+INSERT INTO `alarm_master` VALUES ('1','0','Unfinished Cycles','The washer is started for a new load without the Dositec System receiving an end of load signal from the previous load',NULL,'2019-06-26 15:17:09',NULL,'2019-06-26 15:17:09'),('10','0','Flow Meter/Dosing Alarm','The programmed dosage of product did not occur in the time allowed. The time allowed is based on a value determined by calibration plus an added % of that time',NULL,'2019-06-26 15:17:07',NULL,'2019-06-26 15:17:07'),('101','1','Machine Idle Too long','The amount of time after a load is finished has exceeded a pre-set value that is set by the Chemical Company or Site Manager.',NULL,'2019-06-26 15:17:09',NULL,'2019-06-26 15:17:09'),('11','0','Flow Meter/Flush Alarm','The programmed amount of water for flushing did not occur in the time allowed. The time allowed is based on a value determined by calibration.',NULL,'2019-06-26 15:17:09',NULL,'2019-06-26 15:17:09'),('16','0','Minimum Level of Product/Drum Lance Alarm','Float switch in the drum lance is reading low levels or product',NULL,'2019-06-26 15:17:08',NULL,'2019-06-26 15:17:08'),('2','0','Cycles with Missed Phases','A load that has sent an end of load signal without completing all the programmed phases. A phase is a dose request within a formula.',NULL,'2019-06-26 15:17:08',NULL,'2019-06-26 15:17:08'),('32','0','Emergency Stop/Unit Lock Alarm','EMERGENCY STOP button is depressed.',NULL,'2019-06-26 15:17:08',NULL,'2019-06-26 15:17:08'),('33','0','Air Pressure Failure Alarm','A drop in air pressure below the minimum requirement to operate the Air Assist',NULL,'2019-06-26 15:17:07',NULL,'2019-06-26 15:17:07'),('8','0','Leak Test Alarm','The test performed prior to every product dose to see if there are flowmeter counts when the channel is pressurized with water.',NULL,'2019-06-26 15:17:06',NULL,'2019-06-26 15:17:06'),('9','0','Water Test Alarm','A water flow test performed after the leak test and prior to every product dose',NULL,'2019-06-26 15:17:07',NULL,'2019-06-26 15:17:07');
+/*!40000 ALTER TABLE `alarm_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `business_master`
+--
+
+DROP TABLE IF EXISTS `business_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `business_master` (
+  `business_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `business_type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `headquarters` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address1` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_active` tinyint(4) DEFAULT '1',
+  `is_deleted` tinyint(4) DEFAULT '0',
+  `state` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zipcode` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`business_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `business_master`
+--
+
+LOCK TABLES `business_master` WRITE;
+/*!40000 ALTER TABLE `business_master` DISABLE KEYS */;
+INSERT INTO `business_master` VALUES ('8a80cb816c873d34016c874674dc0003',NULL,NULL,NULL,NULL,'nsp',NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL),('8a80cb816c873d34016c874846910004',NULL,'good',NULL,NULL,'nsp',NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL),('e21c3a57-2d1a-436a-9a95-640885e6c6eb',NULL,'good22',NULL,NULL,'nsp22',NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `business_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contact_master`
+--
+
+DROP TABLE IF EXISTS `contact_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `contact_master` (
+  `contact_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `business_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `number` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`contact_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contact_master`
+--
+
+LOCK TABLES `contact_master` WRITE;
+/*!40000 ALTER TABLE `contact_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contact_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipment_formula`
+--
+
+DROP TABLE IF EXISTS `equipment_formula`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `equipment_formula` (
+  `formula_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `formula_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `formula_value` int(11) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`formula_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `Equipment0` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipment_formula`
+--
+
+LOCK TABLES `equipment_formula` WRITE;
+/*!40000 ALTER TABLE `equipment_formula` DISABLE KEYS */;
+/*!40000 ALTER TABLE `equipment_formula` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipment_master`
+--
+
+DROP TABLE IF EXISTS `equipment_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `equipment_master` (
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alias` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `equipment_type` int(11) DEFAULT NULL,
+  `slave` int(11) DEFAULT NULL,
+  `ip_address` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `observations` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `washer_count` int(11) DEFAULT NULL,
+  `tunnel_count` int(11) DEFAULT NULL,
+  `w_machine_chnl_count` int(11) DEFAULT NULL,
+  `pump_count` int(11) DEFAULT NULL,
+  `channel_count` int(11) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `version` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `device_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`equipment_id`),
+  KEY `Site_idx` (`site_id`),
+  KEY `File_idx` (`file_id`),
+  CONSTRAINT `FileIDN` FOREIGN KEY (`file_id`) REFERENCES `file_master` (`file_id`),
+  CONSTRAINT `SiteIDN` FOREIGN KEY (`site_id`) REFERENCES `site_master` (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipment_master`
+--
+
+LOCK TABLES `equipment_master` WRITE;
+/*!40000 ALTER TABLE `equipment_master` DISABLE KEYS */;
+INSERT INTO `equipment_master` VALUES ('66',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-18 16:24:58',NULL,'2019-08-18 16:26:39',NULL,'111',NULL),('777',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-08-18 16:24:58',NULL,'2019-08-18 16:26:39',NULL,'222',NULL);
+/*!40000 ALTER TABLE `equipment_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipment_pump`
+--
+
+DROP TABLE IF EXISTS `equipment_pump`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `equipment_pump` (
+  `pump_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `pump_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pump_value` int(11) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pump_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `Equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipment_pump`
+--
+
+LOCK TABLES `equipment_pump` WRITE;
+/*!40000 ALTER TABLE `equipment_pump` DISABLE KEYS */;
+/*!40000 ALTER TABLE `equipment_pump` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipment_pump_machinery`
+--
+
+DROP TABLE IF EXISTS `equipment_pump_machinery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `equipment_pump_machinery` (
+  `pump_machine_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `pump_machine_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pump_machine_value` int(11) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pump_machine_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `Equipment1` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipment_pump_machinery`
+--
+
+LOCK TABLES `equipment_pump_machinery` WRITE;
+/*!40000 ALTER TABLE `equipment_pump_machinery` DISABLE KEYS */;
+/*!40000 ALTER TABLE `equipment_pump_machinery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipment_tunnel_channel`
+--
+
+DROP TABLE IF EXISTS `equipment_tunnel_channel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `equipment_tunnel_channel` (
+  `tunnel_channel_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `tunnel_channel_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tunnel_channel_value` int(11) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`tunnel_channel_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `Equipment2` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipment_tunnel_channel`
+--
+
+LOCK TABLES `equipment_tunnel_channel` WRITE;
+/*!40000 ALTER TABLE `equipment_tunnel_channel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `equipment_tunnel_channel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `es_error_log`
+--
+
+DROP TABLE IF EXISTS `es_error_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `es_error_log` (
+  `error_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `site_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `error_type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `es_error` longtext COLLATE utf8_unicode_ci,
+  `index_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `es_document` longtext COLLATE utf8_unicode_ci,
+  `created_by` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `es_type` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  PRIMARY KEY (`error_id`),
+  KEY `Site_idx` (`site_id`),
+  KEY `File_idx` (`file_id`),
+  CONSTRAINT `File001` FOREIGN KEY (`file_id`) REFERENCES `file_master` (`file_id`),
+  CONSTRAINT `Site001` FOREIGN KEY (`site_id`) REFERENCES `site_master` (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `es_error_log`
+--
+
+LOCK TABLES `es_error_log` WRITE;
+/*!40000 ALTER TABLE `es_error_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `es_error_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estadisticas`
+--
+
+DROP TABLE IF EXISTS `estadisticas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `estadisticas` (
+  `id` varchar(255) NOT NULL,
+  `alarm` int(11) NOT NULL,
+  `channel` int(11) NOT NULL,
+  `cost_estimated` decimal(19,2) DEFAULT NULL,
+  `cost_informula` decimal(19,2) DEFAULT NULL,
+  `cost_real` decimal(19,2) DEFAULT NULL,
+  `customer` int(11) NOT NULL,
+  `cycle` int(11) NOT NULL,
+  `dose` decimal(19,2) DEFAULT NULL,
+  `event_date` datetime(6) DEFAULT NULL,
+  `event_type` int(11) DEFAULT NULL,
+  `formula_cost` decimal(19,2) DEFAULT NULL,
+  `formula_id` int(11) DEFAULT NULL,
+  `formula_name` varchar(255) DEFAULT NULL,
+  `formula_phases` int(11) DEFAULT NULL,
+  `gr_informula` int(11) DEFAULT NULL,
+  `gr_real` int(11) DEFAULT NULL,
+  `info` int(11) NOT NULL,
+  `laundry_id` decimal(19,2) DEFAULT NULL,
+  `ml_estimated` int(11) DEFAULT NULL,
+  `ml_real` int(11) DEFAULT NULL,
+  `mod_send_status` varchar(255) DEFAULT NULL,
+  `phase` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_price` decimal(19,2) DEFAULT NULL,
+  `real_kg` int(11) DEFAULT NULL,
+  `send_date` datetime(6) DEFAULT NULL,
+  `time_estimated` decimal(19,2) DEFAULT NULL,
+  `time_real` decimal(19,2) DEFAULT NULL,
+  `unit_id` decimal(19,2) DEFAULT NULL,
+  `washerextractor_id` int(11) DEFAULT NULL,
+  `washerextractor_kg` int(11) DEFAULT NULL,
+  `washerextractor_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estadisticas`
+--
+
+LOCK TABLES `estadisticas` WRITE;
+/*!40000 ALTER TABLE `estadisticas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estadisticas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `file_master`
+--
+
+DROP TABLE IF EXISTS `file_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `file_master` (
+  `file_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `detailed_description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  `lm2_file` longblob,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file_type` int(11) DEFAULT NULL,
+  `device_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`file_id`),
+  KEY `SiteId_idx` (`site_id`),
+  CONSTRAINT `SiteId` FOREIGN KEY (`site_id`) REFERENCES `site_master` (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `file_master`
+--
+
+LOCK TABLES `file_master` WRITE;
+/*!40000 ALTER TABLE `file_master` DISABLE KEYS */;
+INSERT INTO `file_master` VALUES ('111','324',NULL,'2019-08-18 16:24:01',NULL,'1213333333333333333',NULL,'ttt',NULL,NULL,NULL,'2019-08-18 16:29:12',NULL,NULL,1),('222','AAA',NULL,'2019-08-18 16:24:15',NULL,'1213333333333333333',NULL,'666',NULL,NULL,NULL,'2019-08-18 16:29:12',NULL,NULL,1);
+/*!40000 ALTER TABLE `file_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formula_master`
+--
+
+DROP TABLE IF EXISTS `formula_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `formula_master` (
+  `formula_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `load` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phases` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `color` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `uid` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`formula_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `EquipmentID` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formula_master`
+--
+
+LOCK TABLES `formula_master` WRITE;
+/*!40000 ALTER TABLE `formula_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formula_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formula_pdb`
+--
+
+DROP TABLE IF EXISTS `formula_pdb`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `formula_pdb` (
+  `pdb_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `formula_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pdb_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pdb_value` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pdb_id`),
+  KEY `Formula_idx` (`formula_id`),
+  CONSTRAINT `Formula` FOREIGN KEY (`formula_id`) REFERENCES `formula_master` (`formula_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formula_pdb`
+--
+
+LOCK TABLES `formula_pdb` WRITE;
+/*!40000 ALTER TABLE `formula_pdb` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formula_pdb` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `observation_master`
+--
+
+DROP TABLE IF EXISTS `observation_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `observation_master` (
+  `observation_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `observation` varchar(5000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recommendation` varchar(5000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `device_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`observation_id`),
+  KEY `site_idConstraint_idx` (`site_id`),
+  CONSTRAINT `site_idConstraint` FOREIGN KEY (`site_id`) REFERENCES `equipment_master` (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `observation_master`
+--
+
+LOCK TABLES `observation_master` WRITE;
+/*!40000 ALTER TABLE `observation_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `observation_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `preference_master`
+--
+
+DROP TABLE IF EXISTS `preference_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `preference_master` (
+  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `business_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `unit_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `machine_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `role_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alarm_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sms` tinyint(4) DEFAULT NULL,
+  `email` tinyint(4) DEFAULT NULL,
+  `threshold` int(11) NOT NULL DEFAULT '0',
+  `threshold_refresh_interval` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alarm_counter` int(11) DEFAULT '0',
+  `alarm_first_date_time` datetime DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `Ref_alarmIdColumn_idx` (`alarm_id`),
+  KEY `Ref_businessId_idx` (`business_id`),
+  KEY `Ref_roleIdref_idx` (`role_id`),
+  CONSTRAINT `Ref_alarmIdColumn` FOREIGN KEY (`alarm_id`) REFERENCES `alarm_master` (`alarm_id`),
+  CONSTRAINT `Ref_businessId` FOREIGN KEY (`business_id`) REFERENCES `business_master` (`business_id`),
+  CONSTRAINT `Ref_roleIdref` FOREIGN KEY (`role_id`) REFERENCES `role_master` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `preference_master`
+--
+
+LOCK TABLES `preference_master` WRITE;
+/*!40000 ALTER TABLE `preference_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `preference_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `privilege_master`
+--
+
+DROP TABLE IF EXISTS `privilege_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `privilege_master` (
+  `privilege_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `privilege_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`privilege_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `privilege_master`
+--
+
+LOCK TABLES `privilege_master` WRITE;
+/*!40000 ALTER TABLE `privilege_master` DISABLE KEYS */;
+INSERT INTO `privilege_master` VALUES ('1','SITE-LIST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:55'),('10','ACCOUNT-VIEW',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('11','COMPANY-LIST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('12','COMPANY-VIEW',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('13','COMPANY-DELETE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('14','COMPANY-CREATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('15','COMPANY-UPDATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('16','USER-LIST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('17','USER-VIEW',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('18','USER-DELETE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('19','USER-CREATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('2','SITE-VIEW',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('20','USER-UPDATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('21','OBS-REC-VIEW',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 20:15:06'),('22','OBS-REC-UPDATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 20:15:06'),('23','OBS-REC-DELETE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 20:15:06'),('24','OBS-REC-CREATEE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 20:15:06'),('25','FILE-UPLOAD',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('26','FILE-HISTORY',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('27','GENERATE-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('28','COST-SUMMARY-EST-COST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('29','PRODUCTION-SUMMARY-LBS-WASHED',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('3','SITE-UPDATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('30','PRODUCTION-SUMMARY-LOADS-WASHED',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('31','CHEMICAL-SUMMARY-ACTUAL-USAGE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('32','CHEMICAL-SUMMARY-EST-USAGE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('33','COST-SUMMARY-ABS-COST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('34','COST-SUMMARY-COST-PER-CWT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:00:56'),('35','COST-SUMMARY-ERROR',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('36','WASHER-PRODUCTION-SUMMARY-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('37','CHEMICAL-SUMMARY-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('38','COST-SUMMARY-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 20:15:05'),('39','ALARM-SUMMARY-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('4','SITE-CREATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('40','FULL-PRIVILEGE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('41','CREATE-SAME-LEVEL-USER',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('42','SITE-FULL-EDIT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('43','OBS-REC-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('44','REAL-TIME-REPORT',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('45','ALERT-SETTING',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('46','DEVICE-MANAGEMENT-CREATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('47','DEVICE-MANAGEMENT-DELETE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('48','DEVICE-MANAGEMENT-LIST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('49','DEVICE-MANAGEMENT-UPDATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('5','SITE-DELETE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('50','DEVICE-MANAGEMENT-VIEW',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('6','ACCOUNT-DELETE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('7','ACCOUNT-LIST',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('8','ACCOUNT-UPDATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41'),('9','ACCOUNT-CREATE',NULL,'2019-06-26 15:15:59',NULL,'2019-07-04 15:03:41');
+/*!40000 ALTER TABLE `privilege_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_master`
+--
+
+DROP TABLE IF EXISTS `product_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `product_master` (
+  `product_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `density` int(11) DEFAULT NULL,
+  `concentration` int(11) DEFAULT NULL,
+  `kf` double DEFAULT NULL,
+  `flow` double DEFAULT NULL,
+  `frequency` int(11) DEFAULT NULL,
+  `docification_mode` int(11) DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
+  `contact` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alarms_ignored` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `percentage` int(11) DEFAULT NULL,
+  `drag_type` int(11) DEFAULT NULL,
+  `pump_speed` int(11) DEFAULT NULL,
+  `format` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `calibration` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `color1` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `color2` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `uid` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `EquipmentID0` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_master`
+--
+
+LOCK TABLES `product_master` WRITE;
+/*!40000 ALTER TABLE `product_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_master`
+--
+
+DROP TABLE IF EXISTS `role_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `role_master` (
+  `role_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `user_role` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `clearance_level` int(11) DEFAULT NULL,
+  `org_type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_master`
+--
+
+LOCK TABLES `role_master` WRITE;
+/*!40000 ALTER TABLE `role_master` DISABLE KEYS */;
+INSERT INTO `role_master` VALUES ('1','HYDRO ADMIN',1,'HYDRO',NULL,'2019-06-26 15:15:57',NULL,'2019-06-26 15:15:57'),('2','CHEMICAL COMPANY ADMIN',2,'CHEMICAL COMPANY',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37'),('3','CHEMICAL COMPANY MANAGER',3,'CHEMICAL COMPANY',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37'),('4','CHEMICAL COMPANY USER',4,'CHEMICAL COMPANY',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37'),('5','CHEMICAL COMPANY DISTRIBUTOR MANAGER',5,'CHEMICAL COMPANY',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37'),('6','CHEMICAL COMPANY DISTRIBUTOR USER',6,'CHEMICAL COMPANY',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37'),('7','SITE MANAGER',7,'SITE',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37'),('8','SITE USER',8,'SITE',NULL,'2019-06-26 15:15:57',NULL,'2019-07-04 15:41:37');
+/*!40000 ALTER TABLE `role_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_privilege_association`
+--
+
+DROP TABLE IF EXISTS `role_privilege_association`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `role_privilege_association` (
+  `privilege_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `role_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `RoleConstraint_idx` (`role_id`),
+  KEY `PrivilegeConstraint` (`privilege_id`),
+  CONSTRAINT `PrivilegeConstraint` FOREIGN KEY (`privilege_id`) REFERENCES `privilege_master` (`privilege_id`),
+  CONSTRAINT `RoleConstraint` FOREIGN KEY (`role_id`) REFERENCES `role_master` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_privilege_association`
+--
+
+LOCK TABLES `role_privilege_association` WRITE;
+/*!40000 ALTER TABLE `role_privilege_association` DISABLE KEYS */;
+INSERT INTO `role_privilege_association` VALUES ('1','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('3','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('4','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('8','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('9','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('14','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('15','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('20','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('21','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('22','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('23','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('24','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('28','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('32','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('33','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('34','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('35','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('38','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('40','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('41','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('42','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('43','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('45','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('46','1',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('3','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('15','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('20','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('21','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('33','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('34','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('35','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('38','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('40','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('28','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('32','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('41','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('43','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('45','2',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('3','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('20','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('21','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('33','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('34','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('35','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('38','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('28','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('32','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('43','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','3',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('20','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('21','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('28','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('32','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('33','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('34','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('35','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('38','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('43','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','4',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('3','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('20','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('28','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('32','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('33','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('34','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('35','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('38','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','5',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('28','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('32','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('33','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('34','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('35','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('38','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','6',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('3','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('19','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','7',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('1','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('2','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('7','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('10','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('11','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('12','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('16','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('17','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('25','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('26','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('27','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('29','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('30','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('31','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('36','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('37','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('39','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('44','8',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02'),('45','1',NULL,'2019-06-26 15:17:06',NULL,'2019-06-26 15:17:06'),('45','2',NULL,'2019-06-26 15:17:06',NULL,'2019-06-26 15:17:06'),('15','2',NULL,'2019-06-26 15:17:06',NULL,'2019-06-26 15:17:06');
+/*!40000 ALTER TABLE `role_privilege_association` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_privilege_association_bckp`
+--
+
+DROP TABLE IF EXISTS `role_privilege_association_bckp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `role_privilege_association_bckp` (
+  `privilege_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `role_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `log` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_privilege_association_bckp`
+--
+
+LOCK TABLES `role_privilege_association_bckp` WRITE;
+/*!40000 ALTER TABLE `role_privilege_association_bckp` DISABLE KEYS */;
+INSERT INTO `role_privilege_association_bckp` VALUES ('11','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('7','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('1','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('16','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('39','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('36','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('29','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('30','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('37','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('31','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('32','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('33','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('34','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('38','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('35','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('43','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('21','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('32','9',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:12:56'),('11','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('7','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('1','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('16','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('39','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('36','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('29','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('30','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('37','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('31','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('33','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('34','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('38','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('35','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('43','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28'),('21','10',NULL,'2019-06-26 15:16:02',NULL,'2019-06-26 15:16:02','2019-07-04 15:13:28');
+/*!40000 ALTER TABLE `role_privilege_association_bckp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shift_master`
+--
+
+DROP TABLE IF EXISTS `shift_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `shift_master` (
+  `site_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `shift_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `shift_name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `Site_idx` (`site_id`),
+  CONSTRAINT `Site1` FOREIGN KEY (`site_id`) REFERENCES `site_master` (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shift_master`
+--
+
+LOCK TABLES `shift_master` WRITE;
+/*!40000 ALTER TABLE `shift_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shift_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `site_master`
+--
+
+DROP TABLE IF EXISTS `site_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `site_master` (
+  `site_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `site_owner` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `business_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `site_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_active` tinyint(4) DEFAULT '1',
+  `is_deleted` tinyint(4) DEFAULT '0',
+  `address1` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zipcode` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `site_unique_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `index_created` tinyint(4) DEFAULT NULL,
+  `metric_unit` varchar(20) COLLATE utf8_unicode_ci DEFAULT '1',
+  `washer_turn_minute` int(100) DEFAULT '10',
+  `washer_idle_minute` int(100) DEFAULT '20',
+  `washer_efficiency_threshold` double DEFAULT '80',
+  `tunnel_turn_minute` int(100) DEFAULT '2',
+  `tunnel_idle_minute` int(11) DEFAULT '5',
+  `tunnel_efficiency_threshold` double DEFAULT '80',
+  `time_zone` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alert_setting` tinyint(4) DEFAULT '0',
+  `streaming_enabled` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`site_id`),
+  KEY `Business Foreign Key_idx` (`site_owner`),
+  KEY `businessIDConst_idx` (`business_id`),
+  KEY `Fileid_index` (`file_id`),
+  CONSTRAINT `BusinessForeignKey0` FOREIGN KEY (`site_owner`) REFERENCES `business_master` (`business_id`),
+  CONSTRAINT `FileId` FOREIGN KEY (`file_id`) REFERENCES `file_master` (`file_id`),
+  CONSTRAINT `businessIDConst` FOREIGN KEY (`business_id`) REFERENCES `business_master` (`business_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `site_master`
+--
+
+LOCK TABLES `site_master` WRITE;
+/*!40000 ALTER TABLE `site_master` DISABLE KEYS */;
+INSERT INTO `site_master` VALUES ('1213333333333333333',NULL,'8a80cb816c873d34016c874674dc0003','tuls',NULL,NULL,NULL,NULL,'2019-08-18 15:18:52',NULL,'2019-08-18 15:18:52',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1',10,20,80,2,5,80,NULL,0,0),('1232356677',NULL,'8a80cb816c873d34016c874674dc0003','t3',NULL,NULL,NULL,NULL,'2019-08-18 15:19:30',NULL,'2019-08-18 15:19:30',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1',10,20,80,2,5,80,NULL,0,0);
+/*!40000 ALTER TABLE `site_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tunnel_master`
+--
+
+DROP TABLE IF EXISTS `tunnel_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tunnel_master` (
+  `tunnel_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `load` int(11) DEFAULT NULL,
+  `modules_count` int(11) DEFAULT NULL,
+  `module_count_dosif` int(11) DEFAULT NULL,
+  `load_min` int(11) DEFAULT NULL,
+  `load_max` int(11) DEFAULT NULL,
+  `formula_id` int(11) DEFAULT NULL,
+  `ltr` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cellular_minutes` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modules_per_channel` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `uid` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`tunnel_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `Equipment3` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tunnel_master`
+--
+
+LOCK TABLES `tunnel_master` WRITE;
+/*!40000 ALTER TABLE `tunnel_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tunnel_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tunnel_module_product_association`
+--
+
+DROP TABLE IF EXISTS `tunnel_module_product_association`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tunnel_module_product_association` (
+  `id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `tunnel_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `module_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `tunnel_id_ref_idx` (`tunnel_id`),
+  CONSTRAINT `tunnel_id_ref` FOREIGN KEY (`tunnel_id`) REFERENCES `tunnel_master` (`tunnel_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tunnel_module_product_association`
+--
+
+LOCK TABLES `tunnel_module_product_association` WRITE;
+/*!40000 ALTER TABLE `tunnel_module_product_association` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tunnel_module_product_association` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tunnel_products`
+--
+
+DROP TABLE IF EXISTS `tunnel_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tunnel_products` (
+  `tunnel_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `product_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product_value` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`product_id`),
+  KEY `tunnel_id_idx` (`tunnel_id`),
+  CONSTRAINT `tunnel_id` FOREIGN KEY (`tunnel_id`) REFERENCES `tunnel_master` (`tunnel_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tunnel_products`
+--
+
+LOCK TABLES `tunnel_products` WRITE;
+/*!40000 ALTER TABLE `tunnel_products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tunnel_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_alarm_preference`
+--
+
+DROP TABLE IF EXISTS `user_alarm_preference`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `user_alarm_preference` (
+  `id` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alarm_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `active` tinyint(4) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `Ref_alarmIdColumn_idx` (`alarm_id`),
+  KEY `Ref_userIdColumn_idx` (`user_id`),
+  CONSTRAINT `Ref_alarmIdColumn0` FOREIGN KEY (`alarm_id`) REFERENCES `alarm_master` (`alarm_id`),
+  CONSTRAINT `Ref_userIdColumn` FOREIGN KEY (`user_id`) REFERENCES `user_master` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_alarm_preference`
+--
+
+LOCK TABLES `user_alarm_preference` WRITE;
+/*!40000 ALTER TABLE `user_alarm_preference` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_alarm_preference` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_master`
+--
+
+DROP TABLE IF EXISTS `user_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `user_master` (
+  `user_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `user_role` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `business_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_hash` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `middle_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `profile_image` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `change_password` tinyint(4) DEFAULT NULL,
+  `org_type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `jwt_token` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_active` tinyint(4) DEFAULT '1',
+  `is_deleted` tinyint(4) DEFAULT '0',
+  `phone_number` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address1` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zipcode` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `role_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `Business_idx` (`business_id`),
+  KEY `Site_idx` (`site_id`),
+  CONSTRAINT `Business` FOREIGN KEY (`business_id`) REFERENCES `business_master` (`business_id`),
+  CONSTRAINT `Site` FOREIGN KEY (`site_id`) REFERENCES `site_master` (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_master`
+--
+
+LOCK TABLES `user_master` WRITE;
+/*!40000 ALTER TABLE `user_master` DISABLE KEYS */;
+INSERT INTO `user_master` VALUES ('8152678e-d928-477f-97fc-bc19fd12f2e2','ADMIN',NULL,NULL,'Hydro','Admin','hydroadmin','',NULL,'hydroadmin@doverhydro.onmicrosoft.com',NULL,'HYDRO',NULL,NULL,'HydroAdmin','2019-06-26 15:16:02','HydroAdmin','2019-06-26 15:16:02',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1');
+/*!40000 ALTER TABLE `user_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_site_association`
+--
+
+DROP TABLE IF EXISTS `user_site_association`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `user_site_association` (
+  `user_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `site_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `userConstraint_idx` (`user_id`),
+  KEY `siteConstraint_idx` (`site_id`),
+  CONSTRAINT `SiteConstraintForAssociation` FOREIGN KEY (`site_id`) REFERENCES `site_master` (`site_id`),
+  CONSTRAINT `UserConstraintForAssociation` FOREIGN KEY (`user_id`) REFERENCES `user_master` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_site_association`
+--
+
+LOCK TABLES `user_site_association` WRITE;
+/*!40000 ALTER TABLE `user_site_association` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_site_association` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `washer_master`
+--
+
+DROP TABLE IF EXISTS `washer_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `washer_master` (
+  `washer_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `load` int(11) DEFAULT NULL,
+  `modifiable_load` int(11) DEFAULT NULL,
+  `ltr_drag` int(11) DEFAULT NULL,
+  `cellular_minutes` int(11) DEFAULT NULL,
+  `id_formula` int(11) DEFAULT NULL,
+  `work_mode` int(11) DEFAULT NULL,
+  `reset_mode` int(11) DEFAULT NULL,
+  `reset_signal` int(11) DEFAULT NULL,
+  `reset_formula` int(11) DEFAULT NULL,
+  `unused_machine` int(11) DEFAULT NULL,
+  `unused_time_delay` int(11) DEFAULT NULL,
+  `unused_timeout` int(11) DEFAULT NULL,
+  `t_acceptation` int(11) DEFAULT NULL,
+  `t_repetition` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `t_lock` int(11) DEFAULT NULL,
+  `type_programmer` int(11) DEFAULT NULL,
+  `signal_count` int(11) DEFAULT NULL,
+  `signal_voltage` int(11) DEFAULT NULL,
+  `signal_connection` int(11) DEFAULT NULL,
+  `observation` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `uid` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`washer_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `EquipmentID2` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `washer_master`
+--
+
+LOCK TABLES `washer_master` WRITE;
+/*!40000 ALTER TABLE `washer_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `washer_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `water_master`
+--
+
+DROP TABLE IF EXISTS `water_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `water_master` (
+  `water_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `equipment_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `kf` int(11) DEFAULT NULL,
+  `lm2_seq` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `flow` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `water_time` int(11) DEFAULT NULL,
+  `cellphone_minute` int(11) DEFAULT NULL,
+  `docification_mode` int(11) DEFAULT NULL,
+  `seperation_ml` int(11) DEFAULT NULL,
+  `ignored_alarms` int(11) DEFAULT NULL,
+  `percentage` int(11) DEFAULT NULL,
+  `diameter` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pump_type` int(11) DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `uid` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`water_id`),
+  KEY `Equipment_idx` (`equipment_id`),
+  CONSTRAINT `Equipment78` FOREIGN KEY (`equipment_id`) REFERENCES `equipment_master` (`equipment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `water_master`
+--
+
+LOCK TABLES `water_master` WRITE;
+/*!40000 ALTER TABLE `water_master` DISABLE KEYS */;
+/*!40000 ALTER TABLE `water_master` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-09-24 13:10:15
